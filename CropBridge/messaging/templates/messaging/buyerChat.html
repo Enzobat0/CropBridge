@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/button.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <title>CropBridge - Chat</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a id='b1' href="{% url "home" %}"><h2>CropBridge</h2></a>
+            <!-- <form action="#" method="post">
+                <input type="text" placeholder="Search...">
+                <button><i class='bx bx-search-alt-2' style='color:#ffffff' ></i></button>
+            </form> -->
+            <div class="links">
+                <i class='bx bxs-comment-dots' style='color:#ffffff' ></i>
+                <div class="account">
+                    <i class='bx bx-user-circle' style='color:#ffffff'></i>
+                    <span>{{ request.user }}
+                    </span>
+                    <i class='bx bx-chevron-down' style='color:#ffffff' ></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="chats-tab">
+            <h1>Chats</h1>
+            <div class="chats">
+                {% for chatRoom in chatRooms  %}
+                    <a href="{% url "buyerChatRoomView" chatRoom.id %}">
+                        <div class="chat">
+                            <h3>{{ chatRoom.farmer }}</h3>
+                            <p>Click to chat with Chlomi</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="chat-preview">
+            <h2>{{ chatRoom.farmer }}</h2>
+            <div class="messages">
+                {% for message in messages  %}
+                    <div class="{% if message.user == request.user %}msg-sent{% else %}msg-received{% endif %}">
+                        <p>{{ message.content }}</p>
+                    </div>
+                {% endfor %}
+                </div>
+            <form action="" method="post" class="send_msg">
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="message" placeholder="Message..." class="msg">
+                    <button class="msg"><i class='bx bxs-send' style='color:#ffffff' ></i></button>
+                </form>
+            </form>
+        </div>
+    </main>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+    font-family: DM Sans;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+nav {
+    background-color: #04471C;
+    color: white;
+    padding: 15px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+.bx-user-circle {
+    cursor: pointer;
+    font-size: 32px;
+}
+
+.bxs-comment-dots {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #FFFFFF10;
+    border-radius: 8px;
+    padding: 5px 8px;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    border-radius: 8px;
+}
+
+form {
+    width: 40%;
+    position: relative;
+}
+
+input {
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #EDEDED;
+    outline: none;
+}
+
+button {
+    position: absolute;
+    top: 6px;
+    right: 5px;
+    background-color: #04471C;
+    border: none;
+    padding: 5px 7px;
+    border-radius: 5px;
+}
+
+.chats-tab {
+    width: 20%;
+    padding: 20px;
+    background-color: #5CC090;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    height: 100%;
+}
+
+.chats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chat {
+    cursor: pointer;
+    padding: 10px;
+    transition: .3s ease;
+    background: transparent;
+    border-radius: 10px;
+}
+
+.chat:hover {
+    background: #00000020;
+}
+
+main {
+    display: flex;
+    height: 90%;
+    max-height: 657px;
+    width: 100%;
+}
+
+.chat-preview {
+    width: 80%;
+    padding: 20px;
+    position: relative;
+}
+
+.send_msg {
+    width: 100%;
+    max-width: 1180px;
+    position: absolute;
+    bottom: 2%;
+}
+
+input.msg {
+    padding: 15px;
+}
+
+button.msg {
+    padding: 12px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.msg-sent {
+    background-color: #04471C;
+    background-color: #04471C;
+    color: white;
+    width: max-content;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: flex-end;
+    margin-right: 10px;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.msg-received {
+    background-color: #5CC090;
+    margin-bottom: 5px;
+    color: white;
+    width: max-content;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: flex-start;
+    margin-right: 10px;
+    position: relative;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column-reverse; /* Newest messages at the bottom */
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    height: 88%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a#b1 {
+    text-decoration: none;
+    color: white;
+}
+
+button {
+    cursor: pointer;
+}
+    </style>
+</body>
+</html>

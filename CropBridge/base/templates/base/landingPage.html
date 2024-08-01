@@ -1,0 +1,313 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropBridge Home page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <style>
+
+        body{
+            /* font-family: "League Spartan", sans-serif; */
+            font-family: "Montserrat", sans-serif;
+            padding: 0;
+            margin: 0;
+            /* overflow: hidden; */
+        }
+
+        header{
+            padding: 10px 30px;
+        }
+
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-btn{
+            display: flex;
+            gap: 25px;
+        }
+
+        .header-btn a{
+            text-decoration: none;
+            cursor: pointer;
+            color: black;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .header-btn .login{
+            padding: 10px 15px;
+            background-color: #00bf63;
+            border-radius: 5px;
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: box-shadow, transform;
+            transition-property: box-shadow, transform;
+        }
+
+        .header-btn .login:hover, .login:focus, .login:active,
+        .header-btn .register:hover, .register:focus, .register:active{
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        .header-btn .register{
+            padding: 10px 15px;
+            color: #00bf63;
+            border: 2px solid #00bf63;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: box-shadow, transform;
+            transition-property: box-shadow, transform;
+        }
+
+        /* Header responsive */
+
+        @media  (max-width:421px) {
+            .header-btn .login, .header-btn .register{
+                font-size: 13px;
+            }
+        }
+
+        .hero{
+            /* height: 100vh; */
+            background-image: url('{% static "/img/2151441189.jpg" %}');
+            background-size: cover;
+        }
+
+        .hero .hero-content{
+            padding: 180px 60px;
+            color: white;
+        }
+
+        .hero-content h1{
+            font-size: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content h3{
+            font-size: 25px;
+            font-weight: 400;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content a{
+            color: #ffff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            background-color: #720004;
+            padding: 15px 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: box-shadow, transform;
+            transition-property: box-shadow, transform;
+        }
+
+        .hero-content a:hover{
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        /* ----------------------What you can buy styling------------------------------ */
+
+        .services{
+            text-align: center;
+            
+        }
+
+        .services h1{
+            font-size: 40px;
+        }
+
+        .serv-container{
+            display: grid;
+            grid-template-columns: 200px 200px 200px 200px 200px;
+            justify-content: center;
+            margin-bottom: 50px;
+            margin-top: 50px;
+            
+        }
+
+        .serv img{
+            border-radius: 50%;
+        }
+
+        .services a{
+            color: #ffff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 15px 15px;
+            background-color: #00bf63;
+            border-radius: 5px;
+        }
+
+        /* --------------------------Cta styles-------------------------------- */
+
+        .cta{
+            margin-top: 100px;
+            display: flex;
+        }
+
+        .farmer-cta{
+            background-color: #931621;
+            text-align: center;
+            color: #ffff;
+            width: 50%;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .farmer-cta a{
+            text-decoration: none;
+            font-size: 18px;
+            color: #04471C;
+            background-color: white;
+            width: 200px;
+            align-self: center;
+            padding: 10px 10px;
+            font-weight: 700 ;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .farmer-cta a:hover{
+            background-color: #04471C;
+            color: #ffff;
+        }
+
+        .buyer-cta{
+            background-color: #04471C;
+            text-align: center;
+            color: #ffff;
+            width: 50%;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .buyer-cta p{
+            margin-top: 20px;
+        }
+        .buyer-cta a{
+            text-decoration: none;
+            font-size: 20px;
+            color: #931621;
+            background-color: white;
+            width: 200px;
+            align-self: center;
+            padding: 10px 10px;
+            font-weight: 700 ;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        
+        .buyer-cta a:hover{
+            background-color: #931621;
+            color: #ffff;
+        }
+
+        footer{
+            text-align: center;    
+        }
+
+    </style>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/"><img src="{% static "img/logo-2.png" %} " width="150" alt=""></a>
+            </div>
+
+            <div class="header-btn">
+                <a href="{% url "login" %}" class="login">Log In</a>
+                <a href="/registerfarmer.html" class="register">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Your Marketplace for Fresh Produce</h1>
+                <h3>Where Farmers and Buyers meet.</h3>
+                <a href="registerfarmer.html">Explore Now</a>
+            </div>
+        </section>
+
+        <!-- What you can buy -->
+
+        <section class="services">
+            <h1>
+                What you can buy
+            </h1>
+
+            <div class="serv-container">
+                <div class="serv">
+                    <img src="{% static "/img/potatoes.jpg" %}" width="150" alt="">
+                    <h4>Potatoes</h4>
+                </div>
+
+                <div class="serv">
+                    <img src="{% static "/img/maize.jpg" %}" width="150" alt="">
+                    <h4>Maize</h4>
+                </div>
+
+                <div class="serv">
+                    <img src="{% static "/img/tomatoes.jpg" %}" width="150" alt="">
+                    <h4>Tomatoes</h4>
+                </div>
+
+                <div class="serv">
+                    <img src="{% static "/img/carrots.jpg" %}" width="150" alt="">
+                    <h4>Carrots</h4>
+                </div>
+
+                <div class="serv">
+                    <img src="{% static "/img/cabbages.jpg" %}" width="150" height="100" alt="">
+                    <h4>Cabbages</h4>
+                </div>
+            </div>
+
+            <a href="login.html">Explore more</a>
+        </section>
+
+        <!-- CTA -->
+         <section class="cta">
+            <div class="farmer-cta">
+                <h2>Join our Farming Community</h2>
+                <p>Are you a farmer looking to sell more and <br> faster? Join CropBridge today and start selling your produce directly <br> to buyers across Rwanda</p>
+                <a href="registerfarmer.html">Join as a Farmer</a>
+            </div>
+
+            <div class="buyer-cta">
+                <h2>Discover Fresh Local Produce</h2>
+                <p>Looking for fresh, locally sourced produce? <br> Sign up on CropBridge and explore a wide range of products <br> directly from local farmers.</p>
+                <a href="registerbuyer.html">Join as a Buyer</a>
+            </div>
+         </section>
+    </main>
+
+    <footer>
+        <p>© 2024 CropBridge</p>
+    </footer>
+</body>
+</html>

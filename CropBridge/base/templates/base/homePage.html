@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Home | CropBridge</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #04471C;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-icon {
+    font-size: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.message-icon i{
+    font-size: 25px;
+}
+
+.profile-menu {
+    position: relative;
+}
+
+.profile-btn {
+    background: #ffffff20;
+    padding: 15px;
+    border: none;
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+    gap: 5px;
+    display: flex;
+}
+
+.profile-btn i{
+    font-size: 25px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    color: #04471C;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #04471C;
+}
+
+.dropdown-menu a:hover {
+    background: #f4f4f4;
+}
+
+.profile-menu:hover .dropdown-menu {
+    display: block;
+}
+
+main {
+    padding: 20px;
+}
+
+
+.search-bar form{
+}
+
+.search-bar form input {
+    width: 400px;
+    outline: 0px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+}
+
+.search-bar form button{
+    padding: 10px 20px;
+    background-color: #fff;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 50px;
+    border: none;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #333;
+    width: calc(50% - 20px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s;
+}
+
+.product-item:hover {
+    background: #f4f4f4;
+}
+
+.product-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 10px;
+}
+
+.product-info strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .product-item {
+        width: 100%;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="#"><img src="{% static "img/logo-white.png" %}" width="150" alt=""></a></div>
+
+            <div class="search-bar">
+            <form >
+                <input type="text" placeholder="Search products...">
+                <button type="submit">Search</button>
+            </form>
+            </div>
+
+            <div class="nav-icons">
+                {% if request.user.is_buyer %}
+                <a href="{% url "buyerChatView" %}" class="message-icon"><i class='bx bx-message-dots' ></i></a>
+                {% endif %}
+                <div class="profile-menu">
+                    <button class="profile-btn"><i class='bx bx-user-circle' ></i>{{ request.user }}<i class='bx bx-chevron-down' ></i></button>
+                    <div class="dropdown-menu">
+                        {% if request.user.is_farmer %}
+                        <a href="{% url "dashboard" %}">Dashboard</a>
+                        {% endif %}
+                        <a href="#">Settings</a>
+                        <a href="#">Profile</a>
+                        <a href="{% url "logout" %}"> <i class='bx bx-log-out-circle'></i>Log out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="product-list">
+            {% for product in products %}
+            <a href="{% url "details" product.id %}" class="product-item">
+                <img src="{{  product.image.url }}" alt="Product 1">
+                <div class="product-info">
+                    <strong>{{  product.name }}</strong>
+                    <p>Quantity: {{  product.quantity }}kg</p>
+                    <p>Price: {{  product.price }}RWF /kg</p>
+                </div>
+            </a>
+            {% endfor %}
+            <!-- Add more products as needed -->
+        </div>
+    </main>
+</body>
+</html>
