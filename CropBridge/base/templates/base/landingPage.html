@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CropBridge Home page</title>
+    <title>Welcome to CropBridge</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -239,7 +239,7 @@
 
             <div class="header-btn">
                 <a href="{% url "login" %}" class="login">Log In</a>
-                <a href="/registerfarmer.html" class="register">Sign Up</a>
+                <a href="{% url "registerFarmer" %}" class="register">Sign Up</a>
             </div>
         </nav>
     </header>
@@ -295,13 +295,13 @@
             <div class="farmer-cta">
                 <h2>Join our Farming Community</h2>
                 <p>Are you a farmer looking to sell more and <br> faster? Join CropBridge today and start selling your produce directly <br> to buyers across Rwanda</p>
-                <a href="registerfarmer.html">Join as a Farmer</a>
+                <a href="{% url "registerFarmer" %}">Join as a Farmer</a>
             </div>
 
             <div class="buyer-cta">
                 <h2>Discover Fresh Local Produce</h2>
                 <p>Looking for fresh, locally sourced produce? <br> Sign up on CropBridge and explore a wide range of products <br> directly from local farmers.</p>
-                <a href="registerbuyer.html">Join as a Buyer</a>
+                <a href="{% url "registerBuyer" %}">Join as a Buyer</a>
             </div>
          </section>
     </main>

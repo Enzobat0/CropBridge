@@ -17,7 +17,7 @@ def createChatRoom(request, pk):
     if chatRoom is None:
         chatRoom = ChatRoom.objects.create(farmer=farmer, buyer=buyer)
 
-    return redirect('chatRoomView', pk=chatRoom.id)
+    return redirect('buyerChatRoomView', pk=chatRoom.id)
     
 def buyerChatRoomView(request, pk):
     chatRooms = ChatRoom.objects.filter(buyer = request.user)

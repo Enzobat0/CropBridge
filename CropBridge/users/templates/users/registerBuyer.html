@@ -20,8 +20,8 @@
     }
 
     body{
-        background-color: #B8D6C2;
-        background: linear-gradient(to left, #B8D6C2, #04471C);
+        background-color: #F4D3D7;
+        background: linear-gradient(to left, #F4D3D7, #931621);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -59,7 +59,7 @@
     }
 
     .container button{
-        background-color: #04471C;
+        background-color: #931621;
         color: #fff;
         font-size: 12px;
         padding: 10px 45px;
@@ -149,9 +149,9 @@
 }
 
 .toggle{
-    background-color: #04471C;
+    background-color: #931621;
     height: 100%;
-    background: linear-gradient(to right, #5cc090, #04471C);
+    background: linear-gradient(to right, #F4D3D7, #931621);
     color: #fff;
     position: relative;
     left: -100%;
@@ -186,7 +186,7 @@
 }
 
     .buyer-btn{
-        background-color: #931621;
+        background-color: #04471C;
         color: #ffff;
         font-size: 12px;
         padding: 10px 45px;
@@ -205,7 +205,7 @@
 
     .toggle-right .buyer-btn:hover{
         background-color: #fff;
-        color: #931621;
+        color: #04471C;
         border: 1px solid transparent;
         font-weight: 700;
         font-size: 15px;
@@ -243,8 +243,8 @@
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-right">
-                    <h1>Hello, Farmer</h1>
-                    <p>Are you a buyer? Click below to join as a buyer instead.</p>
+                    <h1>Hello, Shopper</h1>
+                    <p>Are you a Farmer? Click below to join as a farmer instead.</p>
                     <a href="{% url "registerFarmer" %}" class="buyer-btn">Join as a Farmer</a>
                 </div>
             </div>
