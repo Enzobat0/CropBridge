@@ -18,7 +18,7 @@ First, clone this repository to your local machine:
 
 ```bash
 git clone https://github.com/yourusername/CropBridge.git
-cd CropBridge
+cd CropBridge```
 
 ### Create a Virtual Environment
 
